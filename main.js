@@ -8,7 +8,7 @@ const app = Vue.createApp({
             texts: {},
             players: [],
             current_language: 'fr',
-            current_server_header: 'EmpireEx_3',
+            current_server_header: 'EmpirefourkingdomsExGG_2',
             current_event_name: window.sessionStorage.getItem('event') ?? '',
             current_category_index: window.sessionStorage.getItem('category') ?? 0,
             current_search: window.sessionStorage.getItem('search') ??  1,
@@ -28,15 +28,13 @@ const app = Vue.createApp({
         }
         await this.changeLanguage();
 
-        let sockets_file = await fetch(`${this.proxy}https://empire-html5.goodgamestudios.com/config/network/1.xml`);
-        sockets_file = new DOMParser().parseFromString(await sockets_file.text(), 'text/xml');
-        for (let instance of sockets_file.firstChild.firstChild.children) {
-            if (instance.children[2].textContent != "EmpireEx_23") {
-                this.servers[instance.children[2].textContent] = {
-                    name: instance.children[6].textContent,
-                    id: instance.children[4].textContent
-                };
-            }
+        let sockets_file = await fetch(`servers.json`);
+        sockets_file = await sockets_file.json();
+        for (let instance of sockets_file.instances.instance) {
+            this.servers[instance.zone] = {
+                name: instance.instanceLocaId,
+                id: instance.instanceName
+            };
         }
         if (window.localStorage.getItem('server') in this.servers) {
             this.current_server_header = window.localStorage.getItem('server');
@@ -170,7 +168,7 @@ const app = Vue.createApp({
         },
 
         async getRankingsByRank() {
-            const response = await fetch(`https://empire-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22LID%22:${this.currentCategory.id},%22SV%22:%22${encodeURIComponent(this.current_search)}%22`);
+            const response = await fetch(`https://e4k-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22LID%22:${this.currentCategory.id},%22SV%22:%22${encodeURIComponent(this.current_search)}%22`);
             const jsonData = await response.json();
             if (jsonData.return_code == "0") {
                 this.players = jsonData.content.L;
@@ -183,7 +181,7 @@ const app = Vue.createApp({
         },
 
         async getRankingsByName() {
-            const response = await fetch(`https://empire-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22SV%22:%22${encodeURIComponent(this.current_search)}%22`);
+            const response = await fetch(`https://e4k-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22SV%22:%22${encodeURIComponent(this.current_search)}%22`);
             const jsonData = await response.json();
             let players;
             if (jsonData.return_code == "0") {
@@ -206,7 +204,7 @@ const app = Vue.createApp({
         async getRankingsByAlliance(allianceID) {
             if (this.alliance_id != allianceID || this.alliance_event != this.currentEventId) {
                 this.players = [];
-                let alliance = await fetch(`https://empire-api.fly.dev/${this.current_server_header}/ain/%22AID%22:${allianceID}`);
+                let alliance = await fetch(`https://e4k-api.fly.dev/${this.current_server_header}/ain/%22AID%22:${allianceID}`);
                 alliance = await alliance.json();
                 if (alliance.return_code == "0") {
                     this.alliance_name = alliance.content.A.N;
@@ -215,7 +213,7 @@ const app = Vue.createApp({
                     let ranks = [];
                     for (let member of members) {
                         let found = false;
-                        const response = await fetch(`https://empire-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22SV%22:%22${encodeURIComponent(member.N)}%22`);
+                        const response = await fetch(`https://e4k-api.fly.dev/${this.current_server_header}/hgh/%22LT%22:${this.currentEventId},%22SV%22:%22${encodeURIComponent(member.N)}%22`);
                         const jsonData = await response.json();
                         if (jsonData.return_code == "0") {
                             for (let rank of jsonData.content.L) {
