@@ -296,35 +296,6 @@
                 }
             ]
         },
-        "event_title_85": {
-            "nopoints": true,
-            "categories": [
-                {
-                    "eventid": 54,
-                    "id": 1,
-                    "name": "dialog_factionhighscore_blueList",
-                    "placeholder": "40",
-                    "value": 50
-                },
-                {
-                    "eventid": 54,
-                    "id": 2,
-                    "name": "dialog_factionhighscore_blueList_legendary"
-                },
-                {
-                    "eventid": 55,
-                    "id": 1,
-                    "name": "dialog_factionhighscore_redList",
-                    "placeholder": "40",
-                    "value": 50
-                },
-                {
-                    "eventid": 55,
-                    "id": 2,
-                    "name": "dialog_factionhighscore_redList_legendary"
-                }
-            ]
-        },
         "dialog_redAlienInvasion_message_header": {
             "id": 58,
             "categories": [
@@ -483,15 +454,6 @@
         },
         "event_title_80": {
             "id": 52,
-            "categories": [
-                {
-                    "id": 1,
-                    "name": "dialog_ci_filter01_all"
-                }
-            ]
-        },
-        "event_title_85": {
-            "id": 56,
             "categories": [
                 {
                     "id": 1,
