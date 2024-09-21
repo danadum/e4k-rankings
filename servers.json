@@ -601,6 +601,22 @@
             "PT"
           ],
           "defaultcountry": "default"
+        },
+        {
+          "value": 203,
+          "server": "e4k-live-preclient-pl1-game.goodgamestudios.com",
+          "port": 443,
+          "zone": "EmpirefourkingdomsExGG2_3",
+          "zoneId": 203,
+          "instanceName": 1,
+          "isFavorite": 0,
+          "instanceLocaId": "generic_country_closedbeta",
+          "isPriority": 0,
+          "isInternational": 0,
+          "countries": [
+            "PT"
+          ],
+          "defaultcountry": "default"
         }
       ]
     },
